@@ -370,6 +370,42 @@
    margin-bottom: 3rem;
   }
 
+  .gh-tooltip {
+   position: fixed;
+   z-index: 9999;
+   pointer-events: none;
+   opacity: 0;
+   transform: translateY(-6px);
+   transition: opacity 120ms ease, transform 120ms ease;
+   background: #0d1117;
+   border: 1px solid #30363d;
+   color: #c9d1d9;
+   padding: 8px 10px;
+   font-size: 12px;
+   border-radius: 8px;
+   white-space: nowrap;
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .gh-tooltip.show {
+   opacity: 1;
+   transform: translateY(0);
+  }
+
+  .gh-tooltip::after {
+   content: '';
+   position: absolute;
+   left: 50%;
+   bottom: -6px;
+   transform: translateX(-50%);
+   width: 10px;
+   height: 10px;
+   background: #0d1117;
+   border-right: 1px solid #30363d;
+   border-bottom: 1px solid #30363d;
+   transform: translateX(-50%) rotate(45deg);
+  }
+
   /* ─── About ─── */
   .about-grid {
    display: grid;
@@ -1367,6 +1403,8 @@
  </style>
 </head>
 
+<div id="ghTooltip" class="gh-tooltip" role="tooltip" aria-hidden="true"></div>
+
 <body>
 
  <!-- Navigation -->
@@ -2077,7 +2115,9 @@
        } else {
         const level = day.level || 0;
         if (level > 0) cell.setAttribute('data-level', level);
-        cell.title = `${day.count} contribution${day.count !== 1 ? 's' : ''} on ${day.date}`;
+        // cell.title = `${day.count} contribution${day.count !== 1 ? 's' : ''} on ${day.date}`;
+        cell.dataset.count = day.count;
+        cell.dataset.date = day.date;
        }
        weekEl.appendChild(cell);
       });
@@ -2100,6 +2140,53 @@
         lastMonth = m;
        }
       }
+     });
+
+     const tooltip = document.getElementById('ghTooltip');
+
+     function formatTooltipText(count, dateStr) {
+      const date = new Date(dateStr);
+      const pretty = date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+      return `${count} contribution${Number(count) !== 1 ? 's' : ''} on ${pretty}`;
+     }
+
+     function positionTooltip(e) {
+      const pad = 12;
+      let x = e.clientX + pad;
+      let y = e.clientY - pad;
+
+      tooltip.style.left = x + 'px';
+      tooltip.style.top = y + 'px';
+
+      // keep inside viewport
+      const r = tooltip.getBoundingClientRect();
+      if (r.right > window.innerWidth - 8) tooltip.style.left = (window.innerWidth - r.width - 8) + 'px';
+      if (r.top < 8) tooltip.style.top = (e.clientY + pad) + 'px';
+     }
+
+     grid.addEventListener('mouseover', (e) => {
+      const cell = e.target.closest('.gh-cell');
+      if (!cell || cell.style.visibility === 'hidden') return;
+
+      const count = cell.dataset.count;
+      const date = cell.dataset.date;
+      if (count == null || date == null) return;
+
+      tooltip.textContent = formatTooltipText(count, date);
+      tooltip.classList.add('show');
+      tooltip.setAttribute('aria-hidden', 'false');
+     });
+
+     grid.addEventListener('mousemove', (e) => {
+      if (!tooltip.classList.contains('show')) return;
+      positionTooltip(e);
+     });
+
+     grid.addEventListener('mouseout', (e) => {
+      const cell = e.target.closest('.gh-cell');
+      if (!cell) return;
+      tooltip.classList.remove('show');
+      tooltip.setAttribute('aria-hidden', 'true');
      });
 
      monthPositions.forEach((mp, i) => {
