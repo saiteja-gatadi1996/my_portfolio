@@ -965,37 +965,24 @@
    box-shadow: 0 0 40px rgba(251, 191, 36, 0.15), inset 0 0 40px rgba(251, 191, 36, 0.03);
   }
 
+  /* Personal Projects image full cover */
   .personal-card-visual {
    height: 180px;
    position: relative;
    overflow: hidden;
+   border-radius: 16px 16px 0 0;
+   /* keeps top corners rounded */
   }
 
-  .personal-card-visual .gradient-bg {
+  .personal-card-visual img {
    width: 100%;
    height: 100%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   position: relative;
-  }
-
-  .personal-icon {
-   position: relative;
-   z-index: 1;
-   animation: iconPulse 3s ease-in-out infinite;
-  }
-
-  @keyframes iconPulse {
-
-   0%,
-   100% {
-    transform: scale(1);
-   }
-
-   50% {
-    transform: scale(1.08);
-   }
+   display: block;
+   /* removes small bottom gap */
+   object-fit: cover;
+   /* fills entire area */
+   object-position: center;
+   /* center crop */
   }
 
   .personal-card-body {
@@ -1813,15 +1800,7 @@
    <a href="https://my-productive-day.vercel.app/" target="_blank" class="personal-card work-card">
     <div class="personal-card-glow glow-cyan"></div>
     <div class="personal-card-visual">
-     <div class="gradient-bg" style="background: linear-gradient(135deg, #064e3b, #065f46, #047857);">
-      <div class="personal-icon">
-       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.5"
-        stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <polyline points="12 6 12 12 16 14" />
-       </svg>
-      </div>
-     </div>
+     <img src="timetracker.png" alt="Time Tracker Application" loading="lazy">
     </div>
     <div class="personal-card-body">
      <div class="personal-card-header">
@@ -1842,18 +1821,7 @@
    <a href="https://interview-preparation-syllabus.vercel.app/" target="_blank" class="personal-card work-card">
     <div class="personal-card-glow glow-violet"></div>
     <div class="personal-card-visual">
-     <div class="gradient-bg" style="background: linear-gradient(135deg, #3b0764, #4c1d95, #5b21b6);">
-      <div class="personal-icon">
-       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.5"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-        <line x1="9" y1="7" x2="16" y2="7" />
-        <line x1="9" y1="11" x2="16" y2="11" />
-        <line x1="9" y1="15" x2="13" y2="15" />
-       </svg>
-      </div>
-     </div>
+     <img src="interview-prep.png" alt="Interview Preparation Tracker" loading="lazy">
     </div>
     <div class="personal-card-body">
      <div class="personal-card-header">
@@ -1874,15 +1842,7 @@
    <a href="https://retirement-amount.vercel.app/" target="_blank" class="personal-card work-card">
     <div class="personal-card-glow glow-amber"></div>
     <div class="personal-card-visual">
-     <div class="gradient-bg" style="background: linear-gradient(135deg, #78350f, #92400e, #b45309);">
-      <div class="personal-icon">
-       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.5"
-        stroke-linecap="round" stroke-linejoin="round">
-        <line x1="12" y1="1" x2="12" y2="23" />
-        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-       </svg>
-      </div>
-     </div>
+     <img src="retirement-calc.png" alt="Daily Compounding Calculator" loading="lazy">
     </div>
     <div class="personal-card-body">
      <div class="personal-card-header">
