@@ -44,7 +44,6 @@
    line-height: 1.6;
   }
 
-  /* ─── Scrollbar ─── */
   ::-webkit-scrollbar {
    width: 6px;
   }
@@ -735,6 +734,327 @@
    margin-top: 0.3rem;
   }
 
+  /* ─── GitHub Contribution Graph ─── */
+  .gh-card {
+   background: #161b22;
+   border: 1px solid #30363d;
+   border-radius: 16px;
+   overflow: hidden;
+   transition: all 0.4s ease;
+  }
+
+  .gh-card:hover {
+   border-color: rgba(59, 130, 246, 0.25);
+   box-shadow: 0 12px 50px rgba(59, 130, 246, 0.06);
+  }
+
+  .gh-stats-bar {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 1.2rem 1.8rem;
+   border-bottom: 1px solid #30363d;
+   flex-wrap: wrap;
+   gap: 0.8rem;
+  }
+
+  .gh-stats-bar .gh-completions {
+   font-size: 0.9rem;
+   color: #c9d1d9;
+  }
+
+  .gh-stats-bar .gh-completions strong {
+   color: #f0f6fc;
+   font-weight: 700;
+  }
+
+  .gh-stats-right {
+   display: flex;
+   gap: 1.5rem;
+   font-size: 0.82rem;
+   color: #8b949e;
+  }
+
+  .gh-stats-right strong {
+   color: #f0f6fc;
+   font-weight: 700;
+  }
+
+  .gh-graph-area {
+   padding: 1.5rem 1.8rem 0.8rem;
+   overflow-x: auto;
+  }
+
+  .gh-graph-scroll {
+   min-width: 720px;
+  }
+
+  .gh-graph-with-labels {
+   display: flex;
+   gap: 6px;
+  }
+
+  .gh-day-labels {
+   display: flex;
+   flex-direction: column;
+   gap: 3px;
+   padding-top: 0;
+   flex-shrink: 0;
+  }
+
+  .gh-day-label {
+   height: 13px;
+   display: flex;
+   align-items: center;
+   font-size: 0.65rem;
+   color: #8b949e;
+   min-width: 28px;
+  }
+
+  .gh-grid {
+   display: flex;
+   gap: 3px;
+  }
+
+  .gh-week {
+   display: flex;
+   flex-direction: column;
+   gap: 3px;
+  }
+
+  .gh-cell {
+   width: 13px;
+   height: 13px;
+   border-radius: 2px;
+   background: #21262d;
+   transition: all 0.15s ease;
+  }
+
+  .gh-cell:hover {
+   outline: 1px solid rgba(255, 255, 255, 0.3);
+   outline-offset: 1px;
+  }
+
+  .gh-cell[data-level="1"] {
+   background: #0e4429;
+  }
+
+  .gh-cell[data-level="2"] {
+   background: #006d32;
+  }
+
+  .gh-cell[data-level="3"] {
+   background: #26a641;
+  }
+
+  .gh-cell[data-level="4"] {
+   background: #39d353;
+  }
+
+  .gh-months {
+   display: flex;
+   padding: 0.6rem 0 0;
+   padding-left: 34px;
+   /* offset for day labels column */
+   gap: 0;
+  }
+
+  .gh-month-label {
+   font-size: 0.7rem;
+   color: #8b949e;
+   text-align: left;
+  }
+
+  .gh-footer {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0.8rem 1.8rem 1.2rem;
+   flex-wrap: wrap;
+   gap: 1rem;
+  }
+
+  .gh-profile-link {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.6rem;
+   padding: 0.5rem 1rem;
+   background: rgba(255, 255, 255, 0.04);
+   border: 1px solid #30363d;
+   border-radius: 8px;
+   color: #c9d1d9;
+   text-decoration: none;
+   font-size: 0.82rem;
+   font-weight: 500;
+   transition: all 0.3s;
+  }
+
+  .gh-profile-link:hover {
+   background: rgba(59, 130, 246, 0.1);
+   border-color: rgba(59, 130, 246, 0.4);
+   color: #f0f6fc;
+   transform: translateY(-1px);
+  }
+
+  .gh-profile-link svg {
+   flex-shrink: 0;
+  }
+
+  .gh-legend {
+   display: flex;
+   align-items: center;
+   gap: 0.35rem;
+   font-size: 0.7rem;
+   color: #8b949e;
+  }
+
+  .gh-legend-cell {
+   width: 11px;
+   height: 11px;
+   border-radius: 2px;
+  }
+
+  /* ─── Personal Projects ─── */
+  .personal-projects-subtitle {
+   color: var(--text-secondary);
+   font-size: 1.05rem;
+   max-width: 600px;
+   line-height: 1.7;
+   margin-top: -1.5rem;
+   margin-bottom: 3rem;
+  }
+
+  .personal-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+   gap: 2rem;
+  }
+
+  a.personal-card {
+   text-decoration: none;
+   color: inherit;
+   display: block;
+   position: relative;
+  }
+
+  .personal-card .personal-card-glow {
+   position: absolute;
+   top: -1px;
+   left: -1px;
+   right: -1px;
+   bottom: -1px;
+   border-radius: 17px;
+   opacity: 0;
+   transition: opacity 0.5s ease;
+   z-index: -1;
+  }
+
+  .personal-card:hover .personal-card-glow {
+   opacity: 1;
+  }
+
+  .glow-cyan {
+   box-shadow: 0 0 40px rgba(52, 211, 153, 0.15), inset 0 0 40px rgba(52, 211, 153, 0.03);
+  }
+
+  .glow-violet {
+   box-shadow: 0 0 40px rgba(167, 139, 250, 0.15), inset 0 0 40px rgba(167, 139, 250, 0.03);
+  }
+
+  .glow-amber {
+   box-shadow: 0 0 40px rgba(251, 191, 36, 0.15), inset 0 0 40px rgba(251, 191, 36, 0.03);
+  }
+
+  .personal-card-visual {
+   height: 180px;
+   position: relative;
+   overflow: hidden;
+  }
+
+  .personal-card-visual .gradient-bg {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+  }
+
+  .personal-icon {
+   position: relative;
+   z-index: 1;
+   animation: iconPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes iconPulse {
+
+   0%,
+   100% {
+    transform: scale(1);
+   }
+
+   50% {
+    transform: scale(1.08);
+   }
+  }
+
+  .personal-card-body {
+   padding: 1.8rem;
+  }
+
+  .personal-card-header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 0.6rem;
+  }
+
+  .personal-card-header h3 {
+   font-family: 'Playfair Display', serif;
+   font-size: 1.25rem;
+   font-weight: 700;
+  }
+
+  .live-badge {
+   font-size: 0.7rem;
+   font-weight: 600;
+   color: #34d399;
+   letter-spacing: 0.5px;
+   padding: 0.2rem 0.7rem;
+   background: rgba(52, 211, 153, 0.1);
+   border: 1px solid rgba(52, 211, 153, 0.2);
+   border-radius: 20px;
+   white-space: nowrap;
+   flex-shrink: 0;
+  }
+
+  .personal-card-body p {
+   color: var(--text-secondary);
+   font-size: 0.9rem;
+   line-height: 1.7;
+   margin-bottom: 1rem;
+  }
+
+  .personal-card-link {
+   display: flex;
+   align-items: center;
+   gap: 0.4rem;
+   margin-top: 1.2rem;
+   font-size: 0.85rem;
+   font-weight: 600;
+   color: var(--accent-glow);
+   transition: all 0.3s;
+  }
+
+  .personal-card-link span {
+   transition: transform 0.3s;
+   display: inline-block;
+  }
+
+  .personal-card:hover .personal-card-link span {
+   transform: translateX(5px);
+  }
+
   /* ─── Contact ─── */
   .contact-wrapper {
    display: grid;
@@ -955,8 +1275,32 @@
     grid-template-columns: 1fr;
    }
 
+   .personal-grid {
+    grid-template-columns: 1fr;
+   }
+
    nav {
     gap: 1.5rem;
+   }
+
+   .github-header {
+    padding: 1.5rem;
+   }
+
+   .github-graph-container {
+    padding: 1.5rem;
+   }
+
+   .gh-stats-bar {
+    padding: 1rem 1.2rem;
+   }
+
+   .gh-graph-area {
+    padding: 1rem 1.2rem 0.5rem;
+   }
+
+   .gh-footer {
+    padding: 0.6rem 1.2rem 1rem;
    }
   }
 
@@ -990,6 +1334,35 @@
 
    .exp-card::before {
     left: -1.5rem;
+   }
+
+   .github-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.2rem;
+   }
+
+   .github-graph-container {
+    padding: 1rem;
+   }
+
+   .gh-stats-bar {
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.8rem 1rem;
+   }
+
+   .gh-stats-right {
+    gap: 1rem;
+    font-size: 0.75rem;
+   }
+
+   .gh-graph-area {
+    padding: 0.8rem;
+   }
+
+   .gh-footer {
+    padding: 0.6rem 1rem 0.8rem;
    }
   }
 
@@ -1044,6 +1417,7 @@
   </div>
  </section>
 
+
  <!-- About Section -->
  <section id="about">
   <div class="reveal">
@@ -1094,6 +1468,54 @@
     <div class="detail-item">
      <div class="label">Award</div>
      <div class="value">Best Employee — Birlasoft</div>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <!-- GitHub Contributions Section -->
+ <section id="github">
+  <div class="reveal">
+   <div class="section-label">Open Source</div>
+   <h2 class="section-title">GitHub Contributions</h2>
+   <div class="section-line"></div>
+  </div>
+  <div class="gh-card reveal">
+   <!-- Stats bar -->
+   <div class="gh-stats-bar">
+    <div class="gh-completions"><strong id="gh-total">—</strong> contributions in the last year</div>
+    <div class="gh-stats-right">
+     <span>Total active days: <strong id="gh-active">40</strong></span>
+     <span>Max streak: <strong id="gh-streak">4</strong></span>
+    </div>
+   </div>
+   <!-- Graph -->
+   <div class="gh-graph-area">
+    <div class="gh-graph-scroll">
+     <div class="gh-graph-with-labels">
+      <div class="gh-day-labels" id="ghDayLabels"></div>
+      <div class="gh-grid" id="ghGrid"></div>
+     </div>
+     <div class="gh-months" id="ghMonths"></div>
+    </div>
+   </div>
+   <!-- Footer -->
+   <div class="gh-footer">
+    <a href="https://github.com/saiteja-gatadi1996" target="_blank" class="gh-profile-link">
+     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path
+       d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+     </svg>
+     saiteja-gatadi1996
+    </a>
+    <div class="gh-legend">
+     <span>Less</span>
+     <div class="gh-legend-cell" style="background:#21262d;"></div>
+     <div class="gh-legend-cell" style="background:#0e4429;"></div>
+     <div class="gh-legend-cell" style="background:#006d32;"></div>
+     <div class="gh-legend-cell" style="background:#26a641;"></div>
+     <div class="gh-legend-cell" style="background:#39d353;"></div>
+     <span>More</span>
     </div>
    </div>
   </div>
@@ -1376,6 +1798,111 @@
   </div>
  </section>
 
+
+ <!-- Personal Projects Section -->
+ <section id="personal-projects">
+  <div class="reveal">
+   <div class="section-label">Side Projects</div>
+   <h2 class="section-title">My Personal Projects</h2>
+   <div class="section-line"></div>
+   <p class="personal-projects-subtitle">Passion projects I've built to solve everyday problems — from tracking
+    productivity to planning for retirement.</p>
+  </div>
+  <div class="personal-grid">
+
+   <a href="https://my-productive-day.vercel.app/" target="_blank" class="personal-card work-card">
+    <div class="personal-card-glow glow-cyan"></div>
+    <div class="personal-card-visual">
+     <div class="gradient-bg" style="background: linear-gradient(135deg, #064e3b, #065f46, #047857);">
+      <div class="personal-icon">
+       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12 6 12 12 16 14" />
+       </svg>
+      </div>
+     </div>
+    </div>
+    <div class="personal-card-body">
+     <div class="personal-card-header">
+      <h3>Time Tracker</h3>
+      <span class="live-badge">● Live</span>
+     </div>
+     <p>A productivity tracking application to monitor daily activities, analyze time usage patterns, and optimize focus
+      across 48 half-hour blocks throughout the day.</p>
+     <div class="work-card-tech">
+      <span>React</span><span>Vercel</span><span>Productivity</span>
+     </div>
+     <div class="personal-card-link">
+      Visit Project <span>→</span>
+     </div>
+    </div>
+   </a>
+
+   <a href="https://interview-preparation-syllabus.vercel.app/" target="_blank" class="personal-card work-card">
+    <div class="personal-card-glow glow-violet"></div>
+    <div class="personal-card-visual">
+     <div class="gradient-bg" style="background: linear-gradient(135deg, #3b0764, #4c1d95, #5b21b6);">
+      <div class="personal-icon">
+       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+        <line x1="9" y1="7" x2="16" y2="7" />
+        <line x1="9" y1="11" x2="16" y2="11" />
+        <line x1="9" y1="15" x2="13" y2="15" />
+       </svg>
+      </div>
+     </div>
+    </div>
+    <div class="personal-card-body">
+     <div class="personal-card-header">
+      <h3>Interview Prep JIRA Tracker</h3>
+      <span class="live-badge">● Live</span>
+     </div>
+     <p>A JIRA-style kanban board for tracking interview preparation progress across system design, React coding,
+      JavaScript fundamentals, and behavioral questions.</p>
+     <div class="work-card-tech">
+      <span>React</span><span>Kanban</span><span>Vercel</span>
+     </div>
+     <div class="personal-card-link">
+      Visit Project <span>→</span>
+     </div>
+    </div>
+   </a>
+
+   <a href="https://retirement-amount.vercel.app/" target="_blank" class="personal-card work-card">
+    <div class="personal-card-glow glow-amber"></div>
+    <div class="personal-card-visual">
+     <div class="gradient-bg" style="background: linear-gradient(135deg, #78350f, #92400e, #b45309);">
+      <div class="personal-icon">
+       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="1" x2="12" y2="23" />
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+       </svg>
+      </div>
+     </div>
+    </div>
+    <div class="personal-card-body">
+     <div class="personal-card-header">
+      <h3>Retirement Calculator</h3>
+      <span class="live-badge">● Live</span>
+     </div>
+     <p>A financial planning tool that calculates retirement corpus based on current savings, monthly investments,
+      expected returns, and inflation — helping visualize long-term wealth goals.</p>
+     <div class="work-card-tech">
+      <span>React</span><span>Finance</span><span>Vercel</span>
+     </div>
+     <div class="personal-card-link">
+      Visit Project <span>→</span>
+     </div>
+    </div>
+   </a>
+
+  </div>
+ </section>
+
  <!-- Contact Section -->
  <section id="contact">
   <div class="reveal">
@@ -1403,18 +1930,18 @@
        <div class="val">+91 949 314 5134</div>
       </div>
      </a>
-     <a class="contact-link" href="https://linkedin.com/in/saitejagatadi" target="_blank">
+     <a class="contact-link" href="https://www.linkedin.com/in/saitejagatadi/" target="_blank">
       <div class="icon">in</div>
       <div class="text">
        <div class="lbl">LinkedIn</div>
        <div class="val">linkedin.com/in/saitejagatadi</div>
       </div>
      </a>
-     <a class="contact-link" href="https://github.com/saitejagatadi" target="_blank">
+     <a class="contact-link" href="https://github.com/saiteja-gatadi1996" target="_blank">
       <div class="icon">⌥</div>
       <div class="text">
        <div class="lbl">GitHub</div>
-       <div class="val">github.com/saitejagatadi</div>
+       <div class="val">github.com/saiteja-gatadi1996</div>
       </div>
      </a>
     </div>
@@ -1444,8 +1971,8 @@
  <!-- Footer -->
  <footer>
   <div class="footer-socials">
-   <a href="https://linkedin.com/in/saitejagatadi" target="_blank" title="LinkedIn">in</a>
-   <a href="https://github.com/saitejagatadi" target="_blank" title="GitHub">⌥</a>
+   <a href="https://www.linkedin.com/in/saitejagatadi/" target="_blank" title="LinkedIn">in</a>
+   <a href="https://github.com/saiteja-gatadi1996" target="_blank" title="GitHub">⌥</a>
    <a href="mailto:saitejagatadi543@gmail.com" title="Email">✉</a>
   </div>
   <p>© 2025 SaiTeja Gatadi. Crafted with passion.</p>
@@ -1489,6 +2016,159 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
   document.querySelectorAll('.reveal, .exp-card, .work-card').forEach(el => observer.observe(el));
+
+  // ─── GitHub Contribution Graph — LIVE DATA ───
+  (function initGitHubGraph() {
+   const GITHUB_USER = 'saiteja-gatadi1996';
+   const API_URL = `https://github-contributions-api.jogruber.de/v4/${GITHUB_USER}?y=last`;
+
+   const grid = document.getElementById('ghGrid');
+   const monthsContainer = document.getElementById('ghMonths');
+   const totalEl = document.getElementById('gh-total');
+   const activeEl = document.getElementById('gh-active');
+   const streakEl = document.getElementById('gh-streak');
+   const dayLabels = document.getElementById('ghDayLabels');
+
+   if (!grid) return;
+
+   // Show loading state
+   grid.innerHTML = '<div style="color:#8b949e;padding:2rem;font-size:0.85rem;">Loading contributions...</div>';
+
+   fetch(API_URL)
+    .then(res => {
+     if (!res.ok) throw new Error('API failed');
+     return res.json();
+    })
+    .then(data => {
+     const contributions = data.contributions || [];
+     if (contributions.length === 0) throw new Error('No data');
+
+     // Calculate stats
+     let totalContributions = 0;
+     let activeDays = 0;
+     let maxStreak = 0;
+     let currentStreak = 0;
+
+     contributions.forEach(day => {
+      totalContributions += day.count;
+      if (day.count > 0) {
+       activeDays++;
+       currentStreak++;
+       maxStreak = Math.max(maxStreak, currentStreak);
+      } else {
+       currentStreak = 0;
+      }
+     });
+
+     // Update stats
+     totalEl.textContent = totalContributions.toLocaleString();
+     activeEl.textContent = activeDays;
+     streakEl.textContent = maxStreak;
+
+     // Organize contributions into weeks
+     // Each week = column, each day = row (0=Sun ... 6=Sat)
+     const weeks = [];
+     let currentWeek = [];
+     const firstDay = new Date(contributions[0].date);
+     const firstDayOfWeek = firstDay.getDay(); // 0=Sun
+
+     // Pad the first week with empty cells
+     for (let i = 0; i < firstDayOfWeek; i++) {
+      currentWeek.push(null);
+     }
+
+     contributions.forEach(day => {
+      currentWeek.push(day);
+      if (currentWeek.length === 7) {
+       weeks.push(currentWeek);
+       currentWeek = [];
+      }
+     });
+
+     // Pad last week
+     if (currentWeek.length > 0) {
+      while (currentWeek.length < 7) currentWeek.push(null);
+      weeks.push(currentWeek);
+     }
+
+     // Clear and render grid
+     grid.innerHTML = '';
+
+     // Day labels column
+     if (dayLabels) {
+      dayLabels.innerHTML = '';
+      const labels = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
+      labels.forEach(l => {
+       const el = document.createElement('div');
+       el.className = 'gh-day-label';
+       el.textContent = l;
+       dayLabels.appendChild(el);
+      });
+     }
+
+     weeks.forEach(week => {
+      const weekEl = document.createElement('div');
+      weekEl.className = 'gh-week';
+      week.forEach(day => {
+       const cell = document.createElement('div');
+       cell.className = 'gh-cell';
+       if (day === null) {
+        cell.style.visibility = 'hidden';
+       } else {
+        const level = day.level || 0;
+        if (level > 0) cell.setAttribute('data-level', level);
+        cell.title = `${day.count} contribution${day.count !== 1 ? 's' : ''} on ${day.date}`;
+       }
+       weekEl.appendChild(cell);
+      });
+      grid.appendChild(weekEl);
+     });
+
+     // Build month labels
+     monthsContainer.innerHTML = '';
+     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+     const cellSize = 13 + 3; // cell + gap
+     let lastMonth = -1;
+     const monthPositions = [];
+
+     weeks.forEach((week, wIndex) => {
+      const validDay = week.find(d => d !== null);
+      if (validDay) {
+       const m = new Date(validDay.date).getMonth();
+       if (m !== lastMonth) {
+        monthPositions.push({ month: m, weekIndex: wIndex });
+        lastMonth = m;
+       }
+      }
+     });
+
+     monthPositions.forEach((mp, i) => {
+      const label = document.createElement('span');
+      label.className = 'gh-month-label';
+      label.textContent = monthNames[mp.month];
+      const nextStart = i < monthPositions.length - 1 ? monthPositions[i + 1].weekIndex : weeks.length;
+      const span = nextStart - mp.weekIndex;
+      label.style.width = (span * cellSize) + 'px';
+      monthsContainer.appendChild(label);
+     });
+    })
+    .catch(err => {
+     console.warn('GitHub API error, using fallback image:', err);
+     grid.innerHTML = '';
+     // Fallback to ghchart image
+     const container = grid.parentElement;
+     container.innerHTML = `
+      <img src="https://ghchart.rshah.org/39d353/${GITHUB_USER}"
+       alt="GitHub Contributions" 
+       style="width:100%;height:auto;border-radius:8px;display:block;"
+       onerror="this.parentElement.innerHTML='<div style=\\'text-align:center;padding:2rem;color:#8b949e\\'>Visit <a href=\\'https://github.com/${GITHUB_USER}\\' target=\\'_blank\\' style=\\'color:#60a5fa\\'>GitHub</a> to see contributions</div>';"
+      >`;
+     monthsContainer.style.display = 'none';
+     totalEl.textContent = '—';
+     activeEl.textContent = '—';
+     streakEl.textContent = '—';
+    });
+  })();
 
   // ─── Smooth scroll for nav links ───
   document.querySelectorAll('nav a[href^="#"]').forEach(a => {
